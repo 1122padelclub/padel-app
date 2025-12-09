@@ -1,0 +1,119 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Función para verificar si el usuario es admin del bar
+    function isBarAdmin(barId) {
+      return request.auth != null && 
+        exists(/databases/$(database)/documents/users/$(request.auth.uid)) &&
+        get(/databases/$(database)/documents/users/$(request.auth.uid)).data.barId == barId &&
+        get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'bar_admin';
+    }
+    
+    // Función para verificar si el usuario es super admin
+    function isSuperAdmin() {
+      return request.auth != null && 
+        exists(/databases/$(database)/documents/users/$(request.auth.uid)) &&
+        get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'super_admin';
+    }
+    
+    // Función para verificar rate limiting por tenant
+    function isWithinRateLimit(barId) {
+      // Implementar rate limiting por barId
+      // Esto requeriría una implementación más compleja con Cloud Functions
+      return true;
+    }
+
+    // Users collection - solo el usuario puede acceder a sus datos
+    match /users/{userId} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+      allow read, write: if isSuperAdmin();
+    }
+
+    // Bars collection - optimizado para multi-tenant
+    match /bars/{barId} {
+      // Super admins pueden hacer todo
+      allow read, write: if isSuperAdmin();
+      
+      // Bar admins pueden leer/escribir solo su bar
+      allow read, write: if isBarAdmin(barId) && isWithinRateLimit(barId);
+      
+      // Lectura pública para datos básicos del bar (nombre, logo, etc.)
+      allow read: if resource.data.isPublic == true;
+      
+      // Tables subcollection - optimizado para consultas frecuentes
+      match /tables/{tableId} {
+        // Lectura pública para mesas activas
+        allow read: if resource.data.isActive == true;
+        
+        // Solo admins del bar pueden escribir
+        allow write: if isBarAdmin(barId) && isWithinRateLimit(barId);
+        
+        // Chat messages subcollection
+        match /messages/{messageId} {
+          // Lectura para usuarios autenticados
+          allow read: if request.auth != null;
+          
+          // Escritura solo para usuarios autenticados
+          allow write: if request.auth != null && isWithinRateLimit(barId);
+        }
+      }
+      
+      // Menu categories - lectura pública
+      match /menuCategories/{categoryId} {
+        allow read: if true;
+        allow write: if isBarAdmin(barId) && isWithinRateLimit(barId);
+      }
+      
+      // Menu items - lectura pública
+      match /menuItems/{itemId} {
+        allow read: if true;
+        allow write: if isBarAdmin(barId) && isWithinRateLimit(barId);
+      }
+      
+      // Orders - solo admins del bar
+      match /orders/{orderId} {
+        allow read, write: if isBarAdmin(barId) && isWithinRateLimit(barId);
+      }
+      
+      // CRM contacts - solo admins del bar
+      match /crm_contacts/{contactId} {
+        allow read, write: if isBarAdmin(barId) && isWithinRateLimit(barId);
+      }
+      
+      // Reviews - lectura pública, escritura autenticada
+      match /reviews/{reviewId} {
+        allow read: if true;
+        allow write: if request.auth != null && isWithinRateLimit(barId);
+      }
+      
+      // Theme configuration - solo admins del bar
+      match /theme/{themeId} {
+        allow read: if true; // Lectura pública para renderizado
+        allow write: if isBarAdmin(barId) && isWithinRateLimit(barId);
+      }
+      
+      // Reservation configuration - solo admins del bar
+      match /reservationSite/{configId} {
+        allow read: if true; // Lectura pública para reservas
+        allow write: if isBarAdmin(barId) && isWithinRateLimit(barId);
+      }
+    }
+    
+    // Global collections
+    match /announcements/{announcementId} {
+      allow read: if true;
+      allow write: if isSuperAdmin();
+    }
+    
+    // Analytics collection - solo super admins
+    match /analytics/{analyticsId} {
+      allow read, write: if isSuperAdmin();
+    }
+    
+    // System configuration - solo super admins
+    match /system/{configId} {
+      allow read, write: if isSuperAdmin();
+    }
+  }
+}

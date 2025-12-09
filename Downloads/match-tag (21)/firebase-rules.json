@@ -1,0 +1,23 @@
+{
+  "rules": {
+    "chats": {
+      "$chatId": {
+        ".read": true,
+        ".write": true,
+        "messages": {
+          "$messageId": {
+            ".validate": "newData.hasChildren(['text', 'senderId', 'timestamp', 'senderTable'])"
+          }
+        }
+      }
+    },
+    "connections": {
+      ".read": true,
+      ".write": true
+    },
+    "tables": {
+      ".read": true,
+      ".write": true
+    }
+  }
+}

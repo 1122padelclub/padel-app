@@ -1,0 +1,77 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 255, 255, 255;
+  --background-start-rgb: 10, 10, 10;
+  --background-end-rgb: 0, 0, 0;
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb));
+  font-family: 'Inter', sans-serif;
+  overflow-x: hidden;
+}
+
+/* Premium Background Texture */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  opacity: 0.15;
+  background-image: url('https://www.transparenttextures.com/patterns/carbon-fibre.png');
+  pointer-events: none;
+  z-index: -1;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Teko', sans-serif;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0f172a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #334155;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #475569;
+}
+
+@layer components {
+  .btn-premium {
+    @apply transform -skew-x-12 uppercase font-display tracking-widest font-bold py-3 px-6 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 active:scale-95;
+  }
+
+  .btn-primary {
+    @apply btn-premium bg-padel-orange text-white hover:bg-white hover:text-padel-orange shadow-[0_0_10px_rgba(247, 92, 3, 0.3)] hover:shadow-[0_0_20px_rgba(247, 92, 3, 0.5)];
+  }
+
+  .btn-secondary {
+    @apply btn-premium bg-padel-teal text-padel-darkblue hover:bg-white hover:text-padel-teal shadow-[0_0_10px_rgba(0, 181, 226, 0.2)] hover:shadow-[0_0_20px_rgba(0, 181, 226, 0.4)];
+  }
+
+  .input-premium {
+    @apply w-full bg-black/20 border border-white/10 rounded-xl p-4 text-white placeholder-white/20 focus:outline-none focus:border-padel-orange/50 focus:ring-1 focus:ring-padel-orange/50 transition-all font-sans text-lg;
+  }
+}

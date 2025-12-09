@@ -1,0 +1,20 @@
+{
+  "indexes": [
+    {
+      "collectionGroup": "reservations",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "status", "order": "ASCENDING" },
+        { "fieldPath": "tableId", "order": "ASCENDING" },
+        { "fieldPath": "reservationDate", "order": "ASCENDING" },
+        { "fieldPath": "__name__", "order": "ASCENDING" }
+      ]
+    }
+  ],
+  "fieldOverrides": []
+}
+
+
+
+
+

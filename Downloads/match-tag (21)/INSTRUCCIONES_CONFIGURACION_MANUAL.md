@@ -1,0 +1,73 @@
+# 🔧 Configuración Manual de FIREBASE_SERVICE_ACCOUNT en Vercel
+
+## ⚠️ El script automático no funcionó correctamente
+
+Necesitas configurar la variable manualmente en el dashboard de Vercel.
+
+---
+
+## 📋 **Pasos para Configurar Manualmente:**
+
+### **1. Ve al Dashboard de Vercel**
+```
+https://vercel.com/dashboard
+```
+
+### **2. Selecciona tu proyecto**
+- Busca y haz clic en **`match-tag-21`**
+
+### **3. Ve a Settings → Environment Variables**
+- En el menú lateral izquierdo, haz clic en **Settings**
+- Luego haz clic en **Environment Variables**
+
+### **4. Busca FIREBASE_SERVICE_ACCOUNT**
+- Si ya existe, haz clic en los **tres puntos (⋮)** → **Edit**
+- Si no existe, haz clic en **Add New** → **Environment Variable**
+
+### **5. Configura la variable**
+
+**Name:**
+```
+FIREBASE_SERVICE_ACCOUNT
+```
+
+**Value:** (Copia y pega EXACTAMENTE este JSON, todo en UNA SOLA LÍNEA)
+```json
+{"type":"service_account","project_id":"match-tag-v0","private_key_id":"6575d2ad89394aab4a9f2d85181f9ae57bc56c22","private_key":"-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDpLCukbDBB5J6G\n+mbyEGD3d9ZhP4LmYXEuZ5NBy7UXp5erswMhyO21KjNxgsh5Poxn+tbAMxnbbjJs\nhwF9PBsi+s4y4bK9xj2FbkcdZP4TjR4Ydoj/raC21YvHccYKIdUrPvhwqsHHhKt8\nah8we5PKuwC58KSopqy9A5dw//brA9DIXBfiQNgK/jsRTOWmKvyB8TP19tlhMI0e\nNMflPIOAtgHXpdkt7TsvUFiJZuwHybJZVvAowbgW/MDyNdLH8Gg2rfdxnlF73daw\nE6OmMeNVqgWI2xSm46b/LwDE+TpJjZT/EdKHQGsJhx7zaCpbsUM6y8iyay+cG4wU\nv272GB3DAgMBAAECggEAOr9mP4cCoZd4WYm9Zj+6Lp+C4/2cfW8PlSGDeJBakBsp\nm5j+sQRu37ZCP9czq1iXB5urf8FgQmkBS1a4iVUbgTSvvyIeZrILzhJ62G0ZltN3\nQbKb0c9tLqOfFCEWRHdBviOfdMORDzPeAPq74PtBwVJcXHzE/7j+zKCbB112WL+i\nPA9Fc+J9JHC2Txw9SBZbEzqBpkMZ1d7iKp25eQADgksg7LVqYbwTF/rojo0p6EZy\nRMgaytTlNi7BDfNYTACFOrxW183jDSqZVj5MKGz1dkhtp5IGXnvgnkXase16iBzE\nJcMcSt3CLhJPlLdyyJSsx/fo2ID095fuJPiOq6SUAQKBgQD2vaRr5uLrXU0OZQGA\nH8KE8Xq83pNZrSx40B/rq891GxEC2U033W79WKoTWL4xUOFem3yc0CDme9OB2559\nJtui3Ru/Omf5ocLP3jQuyXG4Z75ongcIJB3pBWoj08L+LUoCT74d4EQBbPUox8u2\n+9+UfhNT+N9toAdbioxHEOW6TwKBgQDx7C631wbWvdlxJBGncUQzclxX0tmTKTbO\ns0rf10tfucI3raC0zOuP4lbh0ZAKQhCZBl/KH1SpvpKPgu0RLJp1DSTMvZarxgyJ\nyJODJUqeedwsDJHZJ3NmQJ1IO4D01HX80PNs/mVjeYYXTT0UHjcOiooORM4HjrtL\nYOrp0I6sTQKBgDbVBgkEkkEDxu//+klixXONxlzaiZxQI6XlenKBB+VaUnlzmPll\nOBkM7x7Fhd6nvq2rmBGxHt6ZffNJvvrI+95BjLz+WcTb8dMH6kjLc34rb+EH3UAt\n5oe2MFQt5xNdNSk2V2WERRicAg9B9z9+0bzKF7l9gQl3mqr5KxtP4f15AoGBANGP\nZ8C0MSZfejX5qplDEnMGQ1uIOBS0BNf0k41m79HSFZ0peCZlxD/1LpGaeI2KQNpt\nnRh3H12SyV4rabQQ0RNH+XKpYBUYD9BiwPU/nm283a4CjWxwMhSHMDdb5A8w46vG\nTLdDfww2PqN8ssX0jni4JXLKwzXku/VF1PgJQy2ZAoGAOw1QDk6VgLataMHMvZxq\n9Q3Sb00+k0bM3qBcrIbteYRZMoRUOj1eqUB4X1qhFtISahvq68LSrrg4CV8h3Ysw\nN2ifHfr5cF2f610eSTFi0ROZVkMZcHzqV8dmefFuOOX7J+ps41OZqXmdl2TayTF5\n2PpxP7DchnyMC9IMdha7oB0=\n-----END PRIVATE KEY-----\n","client_email":"firebase-adminsdk-fbsvc@match-tag-v0.iam.gserviceaccount.com","client_id":"107038833819448249195","auth_uri":"https://accounts.google.com/o/oauth2/auth","token_uri":"https://oauth2.googleapis.com/token","auth_provider_x509_cert_url":"https://www.googleapis.com/oauth2/v1/certs","client_x509_cert_url":"https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-fbsvc%40match-tag-v0.iam.gserviceaccount.com","universe_domain":"googleapis.com"}
+```
+
+**Environments:** Selecciona **Production** (al menos)
+
+### **6. Guarda los cambios**
+- Haz clic en **Save**
+
+### **7. Redeploy la aplicación**
+Vuelve a esta terminal y ejecuta:
+```bash
+vercel --prod
+```
+
+---
+
+## ✅ **Verificación**
+
+Después del redeploy:
+1. Ve a tu aplicación: https://match-tag-21.vercel.app/admin
+2. Haz clic en la pestaña **Inventario**
+3. Haz clic en **Probar API**
+4. Deberías ver: `✅ API de inventario funcionando correctamente`
+
+---
+
+## 🆘 **Si necesitas ayuda**
+
+El JSON que debes copiar está también en el archivo `service-account-key.json` en este proyecto, pero necesitas:
+1. Convertirlo a una sola línea (sin saltos de línea ni espacios extra)
+2. Los `\n` en el campo `private_key` deben mantenerse como están
+
+---
+
+## 📝 **Nota Importante**
+
+⚠️ **NO compartas este JSON públicamente** - contiene credenciales secretas de tu proyecto Firebase.
+

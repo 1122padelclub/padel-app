@@ -1,0 +1,32 @@
+{
+  "rules": {
+    ".read": "auth != null",
+    ".write": "auth != null",
+    "chats": {
+      "$chatId": {
+        ".read": true,
+        ".write": true
+      }
+    },
+    "messages": {
+      "$chatId": {
+        "$messageId": {
+          ".read": true,
+          ".write": true
+        }
+      }
+    },
+    "connections": {
+      "$connectionId": {
+        ".read": true,
+        ".write": true
+      }
+    },
+    "tables": {
+      "$tableId": {
+        ".read": true,
+        ".write": true
+      }
+    }
+  }
+}

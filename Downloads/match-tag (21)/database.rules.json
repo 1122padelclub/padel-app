@@ -1,0 +1,68 @@
+{
+  "rules": {
+    "bars": {
+      "$barId": {
+        "tables": {
+          ".read": true,
+          ".write": true
+        },
+        "waiterCalls": {
+          ".read": true,
+          ".write": true
+        },
+        "orders": {
+          ".read": true,
+          ".write": true
+        },
+        "chats": {
+          ".read": true,
+          ".write": true
+        },
+        "messages": {
+          ".read": true,
+          ".write": true
+        }
+      }
+    },
+    "messages": {
+      "$barId": {
+        "$chatId": {
+          ".read": true,
+          ".write": true
+        }
+      }
+    },
+    "chats": {
+      "$barId": {
+        ".read": true,
+        ".write": true,
+        "$chatId": {
+          ".read": true,
+          ".write": true
+        }
+      }
+    },
+    "orders": {
+      "$barId": {
+        ".read": true,
+        ".write": true
+      }
+    },
+    "generalChat": {
+      "$barId": {
+        "messages": {
+          ".read": true,
+          ".write": true
+        },
+        "users": {
+          ".read": true,
+          ".write": true
+        },
+        "banned": {
+          ".read": true,
+          ".write": true
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,43 @@
+import type { Metadata } from "next";
+import { Teko, Barlow_Condensed } from "next/font/google";
+import "./globals.css";
+
+const teko = Teko({
+  subsets: ["latin"],
+  variable: "--font-teko",
+  weight: ["300", "400", "500", "600", "700"],
+});
+
+const barlow = Barlow_Condensed({
+  subsets: ["latin"],
+  variable: "--font-barlow",
+  weight: ["300", "400", "500", "600", "700"],
+});
+
+export const metadata: Metadata = {
+  title: "11 22 Pádel Club",
+  description: "Club Loyalty Application",
+};
+
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  return (
+    <html lang="es">
+      <body
+        className={`${teko.variable} ${barlow.variable} antialiased bg-padel-blue text-white font-sans`}
+      >
+        <main className="min-h-screen flex flex-col items-center justify-center p-4 relative overflow-hidden">
+          {/* Background Elements */}
+          <div className="fixed top-0 left-0 w-full h-full -z-10 bg-padel-blue">
+            <div className="absolute top-0 right-0 w-[50%] h-full bg-padel-darkblue -skew-x-12 opacity-50 transform translate-x-1/4"></div>
+            <div className="absolute bottom-0 left-0 w-full h-32 bg-padel-orange -skew-y-3 opacity-10"></div>
+          </div>
+          {children}
+        </main>
+      </body>
+    </html>
+  );
+}

@@ -1,0 +1,38 @@
+{
+  "indexes": [
+    {
+      "collectionGroup": "tables",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "barId",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "isActive",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "number",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "reservations",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "barId",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "reservationDate",
+          "order": "ASCENDING"
+        }
+      ]
+    }
+  ],
+  "fieldOverrides": []
+}
+

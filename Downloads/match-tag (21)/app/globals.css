@@ -1,0 +1,286 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* Configurando tema de colores azules con negro según especificaciones */
+:root {
+  /* Colores para página de reservas - cálidos y profesionales */
+  --background: #ffffff; /* Fondo principal blanco */
+  --foreground: #374151; /* Texto principal gris oscuro */
+  --card: #fefce8; /* Fondo de tarjetas - amarillo muy suave */
+  --card-foreground: #374151; /* Texto en tarjetas */
+  --popover: #ffffff; /* Fondo de popovers */
+  --popover-foreground: #374151; /* Texto en popovers */
+  --primary: #d97706; /* Botones primarios - ámbar */
+  --primary-foreground: #ffffff; /* Texto en botones primarios */
+  --secondary: #ec4899; /* Elementos de acento - rosa vibrante */
+  --secondary-foreground: #ffffff; /* Texto en elementos secundarios */
+  --muted: #fefce8; /* Fondos atenuados */
+  --muted-foreground: #374151; /* Texto atenuado */
+  --accent: #ec4899; /* Elementos destacados */
+  --accent-foreground: #ffffff; /* Texto en elementos destacados */
+  --destructive: #be123c; /* Errores y alertas */
+  --destructive-foreground: #ffffff; /* Texto en elementos destructivos */
+  --border: #e5e7eb; /* Bordes suaves */
+  --input: #ffffff; /* Fondo de inputs */
+  --ring: rgba(217, 119, 6, 0.5); /* Anillo de foco */
+  --chart-1: #d97706;
+  --chart-2: #ec4899;
+  --chart-3: #059669;
+  --chart-4: #be123c;
+  --chart-5: #374151;
+  --radius: 0.5rem;
+  --sidebar: #fefce8;
+  --sidebar-foreground: #374151;
+  --sidebar-primary: #d97706;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #ec4899;
+  --sidebar-accent-foreground: #ffffff;
+  --sidebar-border: #e5e7eb;
+  --sidebar-ring: rgba(217, 119, 6, 0.5);
+
+  /* Variables del sistema de temas existente */
+  --surface: var(--secondary);
+  --success: #34c759;
+  --warning: #ff9500;
+  --danger: #ff3b30;
+  --font-size-base: 1rem;
+  --bg-image: none;
+}
+
+.dark {
+  /* Manteniendo tema oscuro para admin */
+  --background: oklch(0.043 0 0); /* #0B0B0B */
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.043 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.043 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.647 0.176 252.47); /* #0A84FF */
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.145 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.145 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --accent: oklch(0.145 0 0);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(0.985 0 0);
+  --border: oklch(0.145 0 0);
+  --input: oklch(0.145 0 0);
+  --ring: oklch(0.647 0.176 252.47);
+  --chart-1: oklch(0.647 0.176 252.47);
+  --chart-2: oklch(0.518 0.176 252.47);
+  --chart-3: oklch(0.398 0.176 252.47);
+  --chart-4: oklch(0.647 0.176 252.47);
+  --chart-5: oklch(0.518 0.176 252.47);
+  --sidebar: oklch(0.043 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.647 0.176 252.47);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.145 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(0.145 0 0);
+  --sidebar-ring: oklch(0.647 0.176 252.47);
+}
+
+/* Added layout preset styles */
+.layout-classic {
+  /* Default classic layout - no special styles needed */
+}
+
+.layout-glass {
+  --card: rgba(255, 255, 255, 0.1);
+  --popover: rgba(255, 255, 255, 0.1);
+  --secondary: rgba(255, 255, 255, 0.05);
+}
+
+.layout-glass .bg-card,
+.layout-glass .bg-popover,
+.layout-glass .bg-secondary {
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.layout-high-contrast {
+  --background: #000000;
+  --foreground: #ffffff;
+  --card: #000000;
+  --card-foreground: #ffffff;
+  --border: #ffffff;
+  --primary: #ffff00;
+  --primary-foreground: #000000;
+}
+
+.layout-event-skin {
+  background-image: var(--bg-image);
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+.layout-event-skin::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: -1;
+}
+
+/* Configurando fuentes personalizadas */
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --font-sans: var(--font-inter);
+  --font-serif: var(--font-urbanist);
+  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+
+  /* Added theme system color utilities */
+  --color-surface: var(--surface);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-danger: var(--danger);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-size: var(--font-size-base);
+  }
+}
+
+/* Added utility classes for theme system */
+@layer utilities {
+  .bg-surface {
+    background-color: var(--surface);
+  }
+
+  .text-surface {
+    color: var(--surface);
+  }
+
+  .bg-success {
+    background-color: var(--success);
+  }
+
+  .text-success {
+    color: var(--success);
+  }
+
+  .bg-warning {
+    background-color: var(--warning);
+  }
+
+  .text-warning {
+    color: var(--warning);
+  }
+
+  .bg-danger {
+    background-color: var(--danger);
+  }
+
+  .text-danger {
+    color: var(--danger);
+  }
+}
+
+/* Animaciones para el formulario paso a paso */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.5s ease-out;
+}
+
+.animate-slideIn {
+  animation: slideIn 0.4s ease-out;
+}
+
+.animate-scaleIn {
+  animation: scaleIn 0.3s ease-out;
+}
+
+/* Transiciones suaves para botones */
+.transition-all {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Efectos hover mejorados */
+.hover\:scale-105:hover {
+  transform: scale(1.05);
+}
+
+.hover\:scale-110:hover {
+  transform: scale(1.1);
+}
